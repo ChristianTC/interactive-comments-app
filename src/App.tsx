@@ -1,10 +1,12 @@
-
+import CommentsPage from './assets/pages/CommentsPage';
 
 import './App.css'
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <CommentsPage />
+    </>
   )
 }
 
