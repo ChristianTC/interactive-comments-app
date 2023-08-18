@@ -1,8 +1,9 @@
+import Comment from '../components/Comment';
 
 const CommentsPage = () => {
   return (
     <section className="comments-page">
-      CommentsPage
+      <Comment />
     </section>
   )
 }

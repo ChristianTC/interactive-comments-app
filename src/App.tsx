@@ -1,4 +1,4 @@
-import CommentsPage from './assets/pages/CommentsPage';
+import CommentsPage from './pages/CommentsPage';
 
 import './App.css'
 
