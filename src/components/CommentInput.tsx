@@ -1,20 +1,40 @@
-import { IComment, User } from "../interfaces/interfaces"
-import { useState } from 'react';
+import { UserContext } from "../context/UserContext";
+import { useState, useContext } from 'react';
+
+import data from '../../data.json'
+import { CommentsContext } from "../context/CommentsContext";
 
 interface Props {
-  user: User,
-  handleComment: React.Dispatch<React.SetStateAction<IComment[]>>,
   repliedTo?: string,
+  commentId?: number
 }
 
-const CommentInput = ({user, handleComment, repliedTo = ''}:Props) => {
+const CommentInput = ({ repliedTo = '', commentId }:Props) => {
 
-  const [message, setMessage] = useState(repliedTo)
+  const [message, setMessage] = useState(repliedTo ? `@${repliedTo} ` : repliedTo)
+  const {setComments} = useContext(CommentsContext)
   const id = Math.random() * (10000 * 3) - 3
 
+  const user = useContext(UserContext)
+
   const toggleSend = () => {
-    if (message.length > 0) {
-      handleComment(prev => [...prev, {
+    if (commentId && message.length > 0) {
+      setComments(prev => prev.map((comment) => {
+        if (comment.id === commentId) {
+          comment.replies?.push({
+            id: id,
+            content: message,
+            createdAt: 'today',
+            score: 0,
+            user: user,
+            replyingTo: repliedTo
+          })
+        }
+        return comment
+      }))
+    }
+    else if (message.length > 0) {
+      setComments(prev => [...prev, {
         id: id,
         content: message,
         createdAt: 'today',
@@ -23,12 +43,11 @@ const CommentInput = ({user, handleComment, repliedTo = ''}:Props) => {
       }])
       setMessage('')
     }
-
   }
 
   return (
     <section className="comment-input">
-      <img src={user.image.webp} alt="Profile" />
+      <img src={data.currentUser.image.webp} alt="Profile" />
       <textarea 
         required
         value={message}

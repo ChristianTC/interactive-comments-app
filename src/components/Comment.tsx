@@ -2,20 +2,32 @@
 import Reply from '../assets/icons/icon-reply.svg';
 import { IComment } from '../interfaces/interfaces';
 import { useState } from 'react';
+import CommentInput from './CommentInput';
 
 interface Props {
-  comment: IComment
+  comment: IComment,
+  commentId?: number
 }
 
-const Comment = ({comment}: Props) => {
-
+const Comment = ({comment, commentId}: Props) => {
+  
   const [score, setScore] = useState(comment.score)
+  const [showReplyInput, setShowReplyInput] = useState(false)
 
   const handleScore = (value:number):void => {
     setScore(prevState => Math.max(prevState + value, 0))
   }
 
+  const handleReplyInput = () => {
+    setShowReplyInput(prev => !prev)
+  }
+
   return (
+    <section style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px'
+    }}>
     <article className="comment">
       <section className="counter">
         <button onClick={()=>handleScore(1)}>+</button>
@@ -28,7 +40,7 @@ const Comment = ({comment}: Props) => {
           <span className="detail__user">{comment.user.username}</span>
           <span className="detail__date">{comment.createdAt}</span>
         </div>
-        <div className="reply">
+        <div onClick={handleReplyInput} className="reply">
           <img src={Reply} alt="" /> 
           <span>Reply</span>
         </div>
@@ -37,6 +49,11 @@ const Comment = ({comment}: Props) => {
         </p>
       </section>
     </article>
+    {
+      showReplyInput &&
+        <CommentInput repliedTo={comment.user.username} commentId={commentId ? commentId : comment.id} />
+    }
+    </section>
   )
 }
 

@@ -2,10 +2,11 @@ import { IComment } from "../interfaces/interfaces"
 import Comment from "./Comment"
 
 interface Props {
-  replies: IComment[]
+  replies: IComment[],
+  commentId: number
 }
 
-const RepliesList = ({replies}:Props) => {
+const RepliesList = ({replies, commentId}:Props) => {
   return (
     <section className="replies-container">
       <hr />
@@ -13,7 +14,7 @@ const RepliesList = ({replies}:Props) => {
         {
           replies.map((reply) => 
             <div key={reply.id}>
-              <Comment comment={reply} />
+              <Comment comment={reply} commentId={commentId} />
             </div>
           )
         }

@@ -134,8 +134,8 @@ body {
 .replies-container {
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
   justify-content: space-between;
+  padding-top: 20px;
 }
 .replies-list {
   width: 96%;

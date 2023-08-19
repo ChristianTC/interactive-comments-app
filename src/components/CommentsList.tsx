@@ -1,27 +1,28 @@
+import { CommentsContext } from "../context/CommentsContext";
 import { IComment } from "../interfaces/interfaces"
 import Comment from './Comment';
 import RepliesList from "./RepliesList";
+import { useContext } from 'react';
 
-interface Props {
-  comments: IComment[]
-}
 
-const CommentsList = ({comments}:Props) => {
+const CommentsList = () => {
   
+  const {comments} = useContext(CommentsContext)
+
   return (
-    <section className="comments-list">
+    <>
       {
-        comments.map((comment) => 
-          <div key={comment.id}>
+        comments && comments.map((comment) => 
+          <section key={comment.id} className="comments-list">
             <Comment comment={comment} />
             {
-              comment.replies &&
-                <RepliesList replies={comment.replies} />
+              comment.replies && comment.replies.length > 0 &&
+                <RepliesList replies={comment.replies} commentId={comment.id} />
             }
-          </div>
+          </section>
         )
       }
-    </section>
+    </>
   )
 }
 

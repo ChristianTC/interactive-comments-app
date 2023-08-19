@@ -1,20 +1,20 @@
 
 import CommentsList from '../components/CommentsList';
-import data from "../../data.json";
-import { IComment, User } from '../interfaces/interfaces';
-import { useState } from 'react';
 import CommentInput from '../components/CommentInput';
+import UserProvider from '../context/UserProvider';
+import { CommentsProvider } from '../context/CommentsProvider';
 
 const CommentsPage = () => {
 
-  const [comments, setComments] = useState<IComment[]>(data.comments);
-  const [user, setUser] = useState<User>(data.currentUser);
-
   return (
-    <section className="comments-page">
-      <CommentsList comments={comments} />
-      <CommentInput user={user} handleComment={setComments}/>
-    </section>
+    <UserProvider>
+      <section className="comments-page">
+        <CommentsProvider>
+          <CommentsList />
+          <CommentInput />
+        </CommentsProvider>
+      </section>
+    </UserProvider>
   )
 }
 
