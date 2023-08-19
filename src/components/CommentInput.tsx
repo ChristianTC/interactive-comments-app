@@ -6,10 +6,15 @@ import { CommentsContext } from "../context/CommentsContext";
 
 interface Props {
   repliedTo?: string,
-  commentId?: number
+  commentId?: number,
+  handleReplyInput?: () => void,
 }
 
-const CommentInput = ({ repliedTo = '', commentId }:Props) => {
+const CommentInput = ({ 
+  repliedTo = '', 
+  commentId, 
+  handleReplyInput = ()=>{},
+}:Props) => {
 
   const [message, setMessage] = useState(repliedTo ? `@${repliedTo} ` : repliedTo)
   const {setComments} = useContext(CommentsContext)
@@ -32,6 +37,8 @@ const CommentInput = ({ repliedTo = '', commentId }:Props) => {
         }
         return comment
       }))
+      setMessage('')
+      handleReplyInput()
     }
     else if (message.length > 0) {
       setComments(prev => [...prev, {

@@ -51,7 +51,7 @@ const Comment = ({comment, commentId}: Props) => {
     </article>
     {
       showReplyInput &&
-        <CommentInput repliedTo={comment.user.username} commentId={commentId ? commentId : comment.id} />
+        <CommentInput repliedTo={comment.user.username} commentId={commentId ? commentId : comment.id} handleReplyInput={handleReplyInput} />
     }
     </section>
   )

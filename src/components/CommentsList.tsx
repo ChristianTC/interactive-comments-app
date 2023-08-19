@@ -1,5 +1,4 @@
 import { CommentsContext } from "../context/CommentsContext";
-import { IComment } from "../interfaces/interfaces"
 import Comment from './Comment';
 import RepliesList from "./RepliesList";
 import { useContext } from 'react';
