@@ -28,7 +28,7 @@ body {
 }
 
 .comments-page {
-  max-width: 100%;
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -138,13 +138,13 @@ body {
   padding-top: 20px;
 }
 .replies-list {
-  width: 96%;
+  width: 94%;
   gap: 20px;
 }
 .replies-container hr {
   height: auto;
   position: relative;
-  left: 2%;
+  left: 3%;
   border: solid 2px var(--light-gray);
 }
 
