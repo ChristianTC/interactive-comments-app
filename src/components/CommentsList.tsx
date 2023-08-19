@@ -1,5 +1,6 @@
 import { IComment } from "../interfaces/interfaces"
 import Comment from './Comment';
+import RepliesList from "./RepliesList";
 
 interface Props {
   comments: IComment[]
@@ -8,11 +9,19 @@ interface Props {
 const CommentsList = ({comments}:Props) => {
   
   return (
-    <>
+    <section className="comments-list">
       {
-        comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+        comments.map((comment) => 
+          <div key={comment.id}>
+            <Comment comment={comment} />
+            {
+              comment.replies &&
+                <RepliesList replies={comment.replies} />
+            }
+          </div>
+        )
       }
-    </>
+    </section>
   )
 }
 

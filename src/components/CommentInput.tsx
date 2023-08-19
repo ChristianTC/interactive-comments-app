@@ -21,6 +21,7 @@ const CommentInput = ({user, handleComment, repliedTo = ''}:Props) => {
         score: 0,
         user: user
       }])
+      setMessage('')
     }
 
   }
@@ -30,6 +31,7 @@ const CommentInput = ({user, handleComment, repliedTo = ''}:Props) => {
       <img src={user.image.webp} alt="Profile" />
       <textarea 
         required
+        value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Add a comment..."/>
       <button onClick={toggleSend}>SEND</button>

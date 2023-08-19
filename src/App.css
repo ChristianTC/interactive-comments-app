@@ -127,6 +127,27 @@ body {
   border: 0;
 }
 
+.comments-list, .replies-list {
+  display: flex;
+  flex-direction: column;
+}
+.replies-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  justify-content: space-between;
+}
+.replies-list {
+  width: 96%;
+  gap: 20px;
+}
+.replies-container hr {
+  height: auto;
+  position: relative;
+  left: 2%;
+  border: solid 2px var(--light-gray);
+}
+
 @media (max-width: 600px) {
   .comment {
     display: flex;
