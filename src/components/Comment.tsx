@@ -25,8 +25,8 @@ const Comment = ({comment}: Props) => {
       <section className="header">
         <div className="details">
           <img width={'25px'} src={comment.user.image.webp} alt="profile" />
-          <div className="detail__user">{comment.user.username}</div>
-          <div className="detail__date">{comment.createdAt}</div>
+          <span className="detail__user">{comment.user.username}</span>
+          <span className="detail__date">{comment.createdAt}</span>
         </div>
         <div className="reply">
           <img src={Reply} alt="" /> 

@@ -1,5 +1,5 @@
 import { IComment } from "../interfaces/interfaces"
-import Comment from "./Comment"
+import Comment from './Comment';
 
 interface Props {
   comments: IComment[]
